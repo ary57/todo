@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import {v4 as uuidv4} from 'uuid';
 
 function App() {
+  const[todoList, setTodoList] = useState(["make bed", "walk dog", "wash dishes", "do homework", "do homework"])
+
+  function addTodo(){
+    setTodoList(todoList)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form id="form">
+        <label htmlFor="newTodo">Create a todo: </label>
+        <input type="text" id="newTodo" name="todo" />
+        <input type="submit" value="Submit" onClick={addTodo}/>
+      </form>
+      
+      
+      <ul>
+      {todoList.map((todo) => {
+        const id = uuidv4()
+        return (
+          <li key={uuidv4()}>
+          <input type="checkbox" id={id}></input>
+          <label htmlFor={id}>{todo}</label>
+        </li>
+        )
+      })}
+      </ul>
+
+
+
     </div>
   );
 }
