@@ -1,12 +1,15 @@
 import React from 'react'
+import { Checkbox } from '@mantine/core';
 
-const TodoItem = ({todo, onUpdate}) => {
+const TodoItem = ({ todo, onUpdate }) => {
     return (
-        <div>
-            <input type="checkbox" id={todo.id} checked={todo.checked} onChange={() => onUpdate(todo)}></input>
-            <label htmlFor={todo.id}>{todo.body}</label>
-            <label></label>
-        </div>
+        <Checkbox 
+            id={todo.id} 
+            label={todo.body} 
+            checked={todo.checked} 
+            color="orange"
+            onChange={() => onUpdate(todo)} 
+        />
     )
 }
 

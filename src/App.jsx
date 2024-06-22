@@ -1,6 +1,15 @@
+import '@mantine/core/styles.css';
+import { createTheme, MantineProvider } from '@mantine/core';
 import { useState, useEffect } from 'react'
 import './App.css'
 import TodoItem from './components/TodoItem'
+import TodoList from './components/TodoList';
+import DeleteButton from './components/DeleteButton';
+
+const theme = createTheme({
+  /** Put your mantine theme override here */
+});
+
 
 function App() {
   const savedData = JSON.parse(localStorage.getItem('sortedData')); 
@@ -35,23 +44,17 @@ function App() {
 
 
   return (
-    <>
+    <MantineProvider>
       <form onSubmit={handleSubmit}>
         <label htmlFor="input">Add: </label>
         <input type="text" id="input" onChange={(e) => setInput(e.target.value)} value={input}></input>
       </form>
 
-      <ul>
-        {todos.map((todo) =>
-          <li key={todo.id}> <TodoItem todo={todo} onUpdate={handleCheck}/>
-          </li>)}
-      </ul>
+      <TodoList todos={todos} handleCheck={handleCheck}/>
 
-      <form onSubmit={handleDelete}>
-        <input type="button" id="deleteButton" onClick={handleDelete} value={"Delete Checked"} />
-      </form>
+      <DeleteButton handleDelete={handleDelete} />
 
-    </>
+      </ MantineProvider>
   )
 }
 
