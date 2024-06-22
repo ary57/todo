@@ -9,8 +9,8 @@ function App() {
   const [todos, setTodos] = useState(sampleTodos)
 
   const handleCheck = (updatedTodo) => {
-    setTodos(todos.map(todo => todo.id === updatedTodo.id ? {...updatedTodo, checked: !updatedTodo.checked} : todo));
-    
+    setTodos(todos.map(todo => todo.id === updatedTodo.id ? {...updatedTodo, checked: !updatedTodo.checked} : todo)
+    .sort((a,b)=> a.checked === b.checked? a.id - b.id : a.checked - b.checked))
   };
 
   const handleSubmit = (e) => {
