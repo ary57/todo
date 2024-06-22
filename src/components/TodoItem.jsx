@@ -5,9 +5,10 @@ const TodoItem = ({ todo, onUpdate }) => {
     return (
         <Checkbox 
             id={todo.id} 
+            size="xl"
             label={todo.body} 
             checked={todo.checked} 
-            color="orange"
+            color="yellow"
             onChange={() => onUpdate(todo)} 
         />
     )

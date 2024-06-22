@@ -1,14 +1,14 @@
 import { Button } from '@mantine/core';
 
-const DeleteButton = ({ handleDelete }) => {
+const AddButton = ({ handleSubmit }) => {
     return <Button
         variant="filled"
-        color="red"
+        color="teal"
         size="xl"
         radius="xl"
-        onClick={handleDelete}>
-        Clear
+        onClick={handleSubmit}>
+        Add
     </Button>;
 }
 
-export default DeleteButton
+export default AddButton

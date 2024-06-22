@@ -2,9 +2,9 @@ import '@mantine/core/styles.css';
 import { createTheme, MantineProvider } from '@mantine/core';
 import { useState, useEffect } from 'react'
 import './App.css'
-import TodoItem from './components/TodoItem'
 import TodoList from './components/TodoList';
 import DeleteButton from './components/DeleteButton';
+import InputForm from './components/InputForm'
 
 const theme = createTheme({
   /** Put your mantine theme override here */
@@ -45,10 +45,7 @@ function App() {
 
   return (
     <MantineProvider>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="input">Add: </label>
-        <input type="text" id="input" onChange={(e) => setInput(e.target.value)} value={input}></input>
-      </form>
+      <InputForm handleSubmit={handleSubmit} input={input} setInput={setInput}/>
 
       <TodoList todos={todos} handleCheck={handleCheck}/>
 
