@@ -4,7 +4,7 @@ const AddButton = ({ handleSubmit }) => {
     return <Button
         variant="filled"
         color="teal"
-        size="xl"
+        size= "xl"
         radius="xl"
         onClick={handleSubmit}>
         Add

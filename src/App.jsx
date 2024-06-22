@@ -1,13 +1,15 @@
 import '@mantine/core/styles.css';
-import { createTheme, MantineProvider } from '@mantine/core';
+import { createTheme, MantineProvider, Container } from '@mantine/core';
 import { useState, useEffect } from 'react'
 import './App.css'
 import TodoList from './components/TodoList';
 import DeleteButton from './components/DeleteButton';
 import InputForm from './components/InputForm'
+import Header from './components/Header'
+import cx from 'clsx';
+
 
 const theme = createTheme({
-  /** Put your mantine theme override here */
 });
 
 
@@ -44,13 +46,15 @@ function App() {
 
 
   return (
-    <MantineProvider>
+    
+    <MantineProvider theme={theme}>
+      <Container size="responsive" bg="var(--mantine-color-pink-light)">
+      <Header />
       <InputForm handleSubmit={handleSubmit} input={input} setInput={setInput}/>
-
       <TodoList todos={todos} handleCheck={handleCheck}/>
-
       <DeleteButton handleDelete={handleDelete} />
-
+      </Container>
+      
       </ MantineProvider>
   )
 }
