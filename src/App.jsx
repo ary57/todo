@@ -1,16 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import TodoItem from './components/TodoItem'
 
 function App() {
-  const sampleTodos = []
+  const savedData = JSON.parse(localStorage.getItem('sortedData')); 
 
   const [input, setInput] = useState("")
-  const [todos, setTodos] = useState(sampleTodos)
+  const [todos, setTodos] = useState(savedData ? savedData : [])
+
+  useEffect(() => {
+    saveData();
+  }, [todos])
+
+  const saveData = () => {
+    const jsonString = JSON.stringify(todos, null, 2);
+    localStorage.setItem('sortedData', jsonString);
+  }
 
   const handleCheck = (updatedTodo) => {
     setTodos(todos.map(todo => todo.id === updatedTodo.id ? {...updatedTodo, checked: !updatedTodo.checked} : todo)
-    .sort((a,b)=> a.checked === b.checked? a.id - b.id : a.checked - b.checked))
+    .sort((a,b)=> a.checked === b.checked? a.id - b.id : a.checked - b.checked));
   };
 
   const handleSubmit = (e) => {
