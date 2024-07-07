@@ -1,7 +1,7 @@
 import "@mantine/core/styles.css";
 import { Button, Container, Divider, MantineProvider, Stack } from "@mantine/core";
 import { theme } from "./theme";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoInput from "./components/todoInput";
 import Todo from './components/todo';
 type todoType = {
@@ -11,8 +11,19 @@ type todoType = {
 }
 
 const App = () => {
+  const storedDataFile = "TodoStoredData"
+  const savedData:todoType[] = JSON.parse(localStorage.getItem(storedDataFile) || '[]');
+
   const [input, setInput] = useState('');
-  const [todos, setTodos] = useState<todoType[]>([]);
+  const [todos, setTodos] = useState<todoType[]>(savedData || []);
+  useEffect(() => {
+    saveData();
+  }, [todos])
+  
+  const saveData = () => {
+    const jsonString = JSON.stringify(todos, null, 2);
+    localStorage.setItem(storedDataFile, jsonString);
+  }
 
   const handleDelete = (e:any) => {
     e.preventDefault();
