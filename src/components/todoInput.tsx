@@ -1,12 +1,13 @@
-import { ActionIcon, TextInput, rem } from "@mantine/core";
-import { IconPlus } from '@tabler/icons-react';
+import { TextInput, ActionIcon, rem} from '@mantine/core'
+import { IconPlus } from '@tabler/icons-react'
 
-const TodoInput = ({handleAdd, input, setInput}:{handleAdd:any, input:string, setInput:any}) => {
-    const handleKeyDown = (e:any) => {
-        if (e.key === 'Enter') {
-            handleAdd(e);
-        }
-      };
+type params = {
+    handleAdd: any
+    input: string
+    setInput: any
+}
+
+const TodoInput = ({handleAdd, input, setInput}:params) => {
     return (
         <TextInput
         styles={{
@@ -17,7 +18,7 @@ const TodoInput = ({handleAdd, input, setInput}:{handleAdd:any, input:string, se
             placeholder="New Item..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
+            onKeyDown={(e:any) => e.key === 'Enter' ? handleAdd(e) : false}
             rightSectionWidth={42*2}
             rightSection={
                 <div style={{display:'flex', gap: rem(12), paddingRight:"20%" }}>
