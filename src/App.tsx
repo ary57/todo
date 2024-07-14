@@ -4,8 +4,10 @@ import { theme } from "./theme";
 import { useState, useEffect } from "react";
 import TodoInput from "./components/todoInput";
 import Todo from './components/todo';
+import { v4 as uuidv4 } from 'uuid';
+
 type todoType = {
-  id: number;
+  id: string;
   body: string;
   checked: boolean; 
 }
@@ -32,7 +34,7 @@ const App = () => {
 
   const handleAdd = (e:any) => {
     e.preventDefault();
-    setTodos([...todos, {id:todos.length == 0 ? 0 : todos[todos.length -1].id + 1, body:input, checked:false}].sort((a:todoType,b:todoType)=> b.id-a.id));
+    setTodos([...todos, {id: uuidv4(), body:input, checked:false}]);
     setInput("");
   }
 

@@ -2,7 +2,7 @@ import { TextInput, ActionIcon, rem } from '@mantine/core'
 import { IconCheck } from '@tabler/icons-react';
 
 type todoType = {
-    id: number;
+    id: string;
     body: string;
     checked: boolean; 
 }
