@@ -32,7 +32,7 @@ const App = () => {
 
   const handleAdd = (e:any) => {
     e.preventDefault();
-    setTodos([...todos, {id:todos.length, body:input, checked:false}].sort((a:todoType,b:todoType)=> b.id-a.id));
+    setTodos([...todos, {id:todos.length == 0 ? 0 : todos[todos.length -1].id + 1, body:input, checked:false}].sort((a:todoType,b:todoType)=> b.id-a.id));
     setInput("");
   }
 
